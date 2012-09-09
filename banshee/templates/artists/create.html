@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+    <div class="page-header">
+        <h2>Crear artista</h2>
+    </div>
+
+
+    <form method="post" action="" class="form-horizontal">
+
+        {% crispy form %}
+
+        <div class="form-actions">
+            <input type="submit" class="btn btn-primary" value="Guardar" />
+            o
+            <a href="{% url artist_list %}" class="btn">Cancelar</a>
+        </div>
+
+    </form>
+
+
+
+
+{% endblock %}

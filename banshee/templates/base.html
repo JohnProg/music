@@ -1,0 +1,60 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+    <meta charset="UTF-8" />
+
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap-responsive.min.css" type="text/css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/main.css" type="text/css" />
+
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.8.1.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+
+    {% block scripts_top %}
+    {% endblock scripts_top %}
+
+    <title>Banshee</title>
+
+</head>
+<body>
+
+<header class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="brand" href="#"><strong>Banshee</strong></a>
+            <button type="button"class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            {% if user.is_authenticated %}
+                <div class="nav-collapse collapse">
+                    <ul class="nav">
+                        <li><a href="#">{% trans 'Artists' %}</a></li>
+                    </ul>
+
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</header>
+<div class="container">
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            <a class="close" data-dismiss="alert" href="#">×</a>
+            <p>{% autoescape off %}{{ message }}{% endautoescape %}</p>
+        </div>
+    {% endfor %}
+</div>
+<section class="container">
+    {% block content %}
+    {% endblock content %}
+</section>
+
+{% block scripts_bottom %}
+{% endblock scripts_bottom %}
+
+
+</body>
+</html>

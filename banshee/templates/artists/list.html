@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="page-header">
+        <h2>Artistas (<a href="{% url artist_create %}">Nuevo</a>)</h2>
+    </div>
+
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>País</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for obj in page_obj.object_list %}
+            <tr>
+                <td>{{ obj.name }}</td>
+                <td>{{ obj.country }}</td>
+                <td><a href="{% url artist_edit obj.id %}">Editar</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+
+
+{% endblock %}
